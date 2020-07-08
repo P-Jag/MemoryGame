@@ -13,12 +13,11 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         
-        HStack {
-            ForEach(gameView.cards) { card in
+        Grid(gameView.cards) { card in
                 CardView(card: card).onTapGesture {
                     self.gameView.choose(card: card)
-                }
             }
+            .padding(5)
         }
         .padding()
         .foregroundColor(Color.orange)
