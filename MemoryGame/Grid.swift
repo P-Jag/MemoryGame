@@ -1,11 +1,3 @@
-//
-//  Grid.swift
-//  MemoryGame
-//
-//  Created by Paweł Jagła on 08/07/2020.
-//  Copyright © 2020 Paweł Jagła. All rights reserved.
-//
-
 import SwiftUI
 
 struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
@@ -31,18 +23,10 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     }
     
     func body(for item: Item, in layout: GridLayout) -> some View {
-        let index = self.index(of: item)
+        let index = items.firstIndex(matching: item)!
+        
         return viewForItem(item)
             .frame(width: layout.itemSize.width, height: layout.itemSize.height)
             .position(layout.location(ofItemAt: index))
-    }
-    
-    func index(of item: Item) -> Int {
-        for index in 0..<items.count {
-            if items[index].id == item.id {
-                return index
-            }
-        }
-        return 0 // TODO: bogus!
     }
 }
