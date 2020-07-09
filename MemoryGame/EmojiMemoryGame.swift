@@ -2,24 +2,24 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     
-    @Published private var game: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    @Published private var game: MemorizeGame<String> = EmojiMemoryGame.createMemoryGame()
     
-    static func createMemoryGame() -> MemoryGame<String> {
-        let emojis = ["👻","🎃", "🕷"]
-        return MemoryGame<String>(numberOfpairsOfCards: emojis.count) { pairIndex in
+    private static func createMemoryGame() -> MemorizeGame<String> {
+        let emojis = ["🦄","🐱", "🦊"]
+        return MemorizeGame<String>(numberOfpairsOfCards: emojis.count) { pairIndex in
             return emojis[pairIndex]
         }
     }
     
     //MARK: - Access to the model
     
-    var cards: Array<MemoryGame<String>.Card> {
+    var cards: Array<MemorizeGame<String>.Card> {
         game.cards
     }
     
     //MARK: - Intent(s)
     
-    func choose(card: MemoryGame<String>.Card) {
+    func choose(card: MemorizeGame<String>.Card) {
         game.choose(card: card)
     }
 }
